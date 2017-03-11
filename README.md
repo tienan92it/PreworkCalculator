@@ -32,7 +32,7 @@ The following **optional** features are implemented:
 * [ ] UI animations
 * [ ] Settings page to change the default tip percentage.
 * [ ] Using locale-specific currency and currency thousands separators.
-* [ ] Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
+* [x] Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
 
 The following **additional** features are implemented:
 
@@ -42,9 +42,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/Ak0i3TF.gif' title='Video Walkthrough Tip Calculator React native' width='' alt='Video Walkthrough Tip Calculator React native' />
+<img src='http://i.imgur.com/diZeWOo.gifv' title='Video Walkthrough Tip Calculator React native' width='' alt='Video Walkthrough Tip Calculator React native' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIF created with [ezgif.com](https://ezgif.com/video-to-gif).
 
 ## Notes
 

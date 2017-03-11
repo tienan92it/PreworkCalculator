@@ -7,7 +7,8 @@ import {
   TextInput,
   Button,
   Picker,
-  AsyncStorage
+  AsyncStorage,
+  Keyboard
 } from 'react-native';
 
 export default class Setting extends Component {
@@ -59,6 +60,7 @@ export default class Setting extends Component {
   // this method will be called when scene loaded
   componentDidMount(){
     this.getSceneTransition();
+    Keyboard.dismiss()
   }
 
   render() {

@@ -5,7 +5,9 @@ import {
   Text,
   View,
   TextInput,
-  Button
+  Button,
+  Keyboard,
+  Animated
 } from 'react-native';
 
 import SegmentedControlTab from 'react-native-segmented-control-tab'
@@ -18,8 +20,21 @@ export default class Cal extends Component {
       segmentSelectedIndex : 0,
       billAmount : 0,
       result : 0,
-      tipAmount : 0
+      tipAmount : 0,
+      fadeAnim: new Animated.Value(0),
+      calInput: 0 // init opacity 0
     }
+  }
+
+  componentDidMount() {
+    Animated.timing(          // Uses easing functions
+      this.state.fadeAnim,    // The value to drive
+      {toValue: 1}            // Configuration
+    ).start();                // Don't forget start!
+  }
+
+  componentDidUpdate() {
+    this.calInput.focus()
   }
 
   handleSegmentChange(index) {
@@ -31,6 +46,9 @@ export default class Cal extends Component {
   }
 
   handleBillAmountChange(bill, index) {
+    if (!bill){
+      bill = 0
+    }
     this.setState({
       billAmount : bill
     })
@@ -58,39 +76,40 @@ export default class Cal extends Component {
   render() {
     return (
       <View style={{marginTop: 50}}>
-      
-        <View>
-          <Text style={styles.title}>Tip Calculator</Text>
-        </View>
 
-        <View style={{flexDirection:'row', alignItems: 'center', margin: 10}}>
+        <Animated.View>
+          <Text style={styles.title}>Tip Calculator</Text>
+        </Animated.View>
+
+        <Animated.View style={{opacity: this.state.fadeAnim, flexDirection:'row', alignItems: 'center', margin: 10}}>
           <Text style={styles.labelMedium}>Bill Amount</Text>
           <TextInput style={styles.textinput}
+            ref={(input) => { this.calInput = input; }}
             onChangeText={(billAmount) => this.handleBillAmountChange(billAmount)}
             keyboardType='numeric'
             maxLenght={10}/>
-        </View>
+        </Animated.View>
 
-        <View style={styles.content}>
+        <Animated.View style={styles.content}>
           <Text style={styles.labelMedium}>Tip amount: {this.state.tipAmount}</Text>
-        </View>
+        </Animated.View>
 
-        <View style={styles.content}>
+        <Animated.View style={styles.content}>
           <SegmentedControlTab
             values={this.segmentValues()}
             onTabPress= {index => this.handleSegmentChange(index)}
             />
-        </View>
+        </Animated.View>
 
-        <View style={styles.content}>
+        <Animated.View style={styles.content}>
           <Text style={styles.labelSmall}>Bill amount: {this.state.billAmount} </Text>
           <Text style={styles.labelSmall}>Tip amount: {this.state.tipAmount}</Text>
           <Text style={styles.labelSmall}>Percent: {this.segmentValues()[this.state.segmentSelectedIndex]}</Text>
-        </View>
+        </Animated.View>
 
-        <View style={styles.content}>
+        <Animated.View style={styles.content}>
           <Text style={{fontSize: 12, fontWeight: 'bold'}}>Result: {this.state.result}</Text>
-        </View>
+        </Animated.View>
       </View>
     )
   }
